@@ -112,7 +112,7 @@ function printQuote() {
   }
 
   html += `</p>`;
-
+  // write content inside the quote-box element
   document.getElementById('quote-box').innerHTML = html;
 }
 /***
