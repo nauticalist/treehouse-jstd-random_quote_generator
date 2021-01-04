@@ -12,6 +12,12 @@ project 1 - A Random Quote Generator
 ***/
 const quotes = [
   {
+    quote: "Every great developer you know got there by solving problems they were unqualified to solve until they actually did it.",
+    source: "Patrick McKenzi",
+    citation: "Twitter",
+    year: 2016
+  },
+  {
     quote: "Science is not only compatible with spirituality; it is a profound source of spirituality.",
     source: "Carl Sagan",
     citation: "The Demon-Haunted World: Science as a Candle in the Dark",
@@ -79,14 +85,36 @@ function getRandomQuote(quotesArr) {
   return quotesArr[randomIndex];
 }
 
-// console.log(getRandomQuote(quotes));
+
 
 /***
  * `printQuote` function
 ***/
 
+//console.log(quote);
 
+function printQuote() {
+  // get a random quote
+  const quote = getRandomQuote(quotes);
+  // create html content
+  let html = `
+  <p class="quote">${quote.quote}</p>
+  <p class="source">${quote.source}`;
 
+  if (quote.citation) {
+    html += `<span class="citation">${quote.citation}</span>`;
+  }
+  if (quote.year) {
+    html += `<span class="year">${quote.year}</span>`;
+  }
+  if (quote.tags) {
+    html += `<br><span class="tags">Tag: ${quote.tags}</span>`;
+  }
+
+  html += `</p>`;
+
+  document.getElementById('quote-box').innerHTML = html;
+}
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
