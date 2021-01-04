@@ -49,13 +49,12 @@ const quotes = [
     quote: "Trying to understand is like straining through muddy water. Have the patience to wait! Be still and allow the mud to settle.",
     source: "Lao Tzu",
     citation: "Tao Te Ching",
-    year: 1989,
     tags: "taoism"
   },
   {
     quote: "The role of a creative leader is not to have all the ideas; it’s to create a culture where everyone can have ideas and feel that they’re valued.",
-    source: "Out of Minds",
-    citation: "Sir Ken Robinson",
+    source: "Sir Ken Robinson",
+    citation: "Out of Minds",
     year: 2001,
     tags: "leadership"
   },
@@ -85,14 +84,21 @@ function getRandomQuote(quotesArr) {
   return quotesArr[randomIndex];
 }
 
-
-
 /***
  * `printQuote` function
 ***/
 
-//console.log(quote);
+// create random number for color
+function createRandomNumber() {
+   return Math.floor(Math.random() * 256);
+}
 
+// create background color
+const randomRGB = () => {
+    return `rgb( ${createRandomNumber()}, ${createRandomNumber()}, ${createRandomNumber()} )`;
+}
+
+// print quote as html
 function printQuote() {
   // get a random quote
   const quote = getRandomQuote(quotes);
@@ -101,6 +107,7 @@ function printQuote() {
   <p class="quote">${quote.quote}</p>
   <p class="source">${quote.source}`;
 
+  // check optional fields are provided
   if (quote.citation) {
     html += `<span class="citation">${quote.citation}</span>`;
   }
@@ -110,11 +117,17 @@ function printQuote() {
   if (quote.tags) {
     html += `<br><span class="tags">Tag: ${quote.tags}</span>`;
   }
-
+  
   html += `</p>`;
   // write content inside the quote-box element
   document.getElementById('quote-box').innerHTML = html;
+  // set background  color.
+  document.body.style.backgroundColor = randomRGB();
 }
+
+// automatically refresh quotes every 10 seconds
+setInterval(printQuote, 10000)
+
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
